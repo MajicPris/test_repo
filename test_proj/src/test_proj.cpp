@@ -3,13 +3,19 @@
 // Author      : 
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
 //============================================================================
 
 #include <iostream>
+#include "file2.h"
+#include "file3.h"
+
 using namespace std;
 
-int main() {
+int main()
+{
+	func2();
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	global_var++;
+	func2();
 	return 0;
 }

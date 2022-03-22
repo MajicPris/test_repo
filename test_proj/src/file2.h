@@ -6,3 +6,4 @@
  */
 
 extern void func2();
+

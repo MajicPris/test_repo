@@ -8,8 +8,8 @@
 #include <iostream>
 #include "file2.h"
 #include "file3.h"
+#include "pointer_to_func.h"
 
-//using namespace std;
 
 inline int max(int a, int b)
 {
@@ -47,5 +47,14 @@ int main()
 	cout << Boo::doOperation(6,4) << endl;
 	cout << Doo::doOperation(6,4) << endl;
 	cout << Foo::doOperation(6,4) << endl;
+
+	checkPointerToFunc();
+
+	checkPointersLogic();
+
+	checkConstPointers();
+
+	checkConstMembers();
+
 	return 0;
 }

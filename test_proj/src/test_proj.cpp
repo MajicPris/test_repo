@@ -9,6 +9,7 @@
 #include "file2.h"
 #include "file3.h"
 #include "pointer_to_func.h"
+#include "work_with_class.h"
 
 
 inline int max(int a, int b)
@@ -55,6 +56,12 @@ int main()
 	checkConstPointers();
 
 	checkConstMembers();
+
+	testClassStaticFunc();
+
+	testClassConstructorFunc();
+
+	TestFriendFunction();
 
 	return 0;
 }

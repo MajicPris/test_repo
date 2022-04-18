@@ -10,6 +10,7 @@
 #include "file3.h"
 #include "pointer_to_func.h"
 #include "work_with_class.h"
+#include "work_with_templates.h"
 
 
 inline int max(int a, int b)

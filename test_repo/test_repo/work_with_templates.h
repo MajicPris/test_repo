@@ -22,7 +22,7 @@ struct Data
     int a;
     int b;
 };
-
+/*
 void func()
 {
     Data x, y;
@@ -65,6 +65,6 @@ bool cmpFunc(char* c)
     return strArray.empty() ? True : False;
 }
 
-
+*/
 
 #endif /* WORK_WITH_TEMPLATES_H_ */

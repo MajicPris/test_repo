@@ -1,11 +1,8 @@
-//============================================================================
-// Name        : test_proj.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-//============================================================================
+﻿// test_repo.cpp: определяет точку входа для приложения.
+//
 
-#include <iostream>
+#include "iostream"
+
 #include "file2.h"
 #include "file3.h"
 #include "pointer_to_func.h"
@@ -23,7 +20,7 @@ namespace Doo
 {
 	int doOperation(int a, int b)
 	{
-		return a-b;
+		return a - b;
 	}
 
 }  // namespace Doo
@@ -33,7 +30,7 @@ namespace Boo
 {
 	int doOperation(int a, int b)
 	{
-		return a+b;
+		return a + b;
 	}
 }  // namespace Boo
 
@@ -46,9 +43,9 @@ int main()
 	global_var++;
 	func2();
 	cout << max(global_var, 5) << endl;;
-	cout << Boo::doOperation(6,4) << endl;
-	cout << Doo::doOperation(6,4) << endl;
-	cout << Foo::doOperation(6,4) << endl;
+	cout << Boo::doOperation(6, 4) << endl;
+	cout << Doo::doOperation(6, 4) << endl;
+	cout << Foo::doOperation(6, 4) << endl;
 
 	checkPointerToFunc();
 

@@ -7,3 +7,8 @@ project ("test_repo")
 
 # Включите подпроекты.
 add_subdirectory ("test_repo")
+set_property (TARGET "test_repo"
+  PROPERTY
+    # Enable C++17 standard compliance
+    CXX_STANDARD 17
+)

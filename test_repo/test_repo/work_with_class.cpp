@@ -21,15 +21,14 @@ bool Date::getIsType()
 
 void testClassStaticFunc()
 {
-	using namespace std;
-	cout << "\ntestClassStaticFunc" << endl;
+	std::cout << "\ntestClassStaticFunc" << std::endl;
 	Date obj1;
-	cout << "obj1 getIsType: " << obj1.getIsType() << endl;
+	std::cout << "obj1 getIsType: " << obj1.getIsType() << std::endl;
 
 	Date::setType(true);
 	Date obj2;
-	cout << "obj2 getIsType: " << obj2.getIsType() << endl;
-	cout << "obj1 getIsType: " << obj1.getIsType() << endl;
+	std::cout << "obj2 getIsType: " << obj2.getIsType() << std::endl;
+	std::cout << "obj1 getIsType: " << obj1.getIsType() << std::endl;
 }
 
 int TestConstructor::getValue()
@@ -38,11 +37,10 @@ int TestConstructor::getValue()
 }
 void testClassConstructorFunc()
 {
-	using namespace std;
-	cout << "\ntestClassConstructorFunc" << endl;
+	std::cout << "\ntestClassConstructorFunc" << std::endl;
 	//TestConstructor obj1; //illegal operation. There is constructor with  parameters, not possible to call default nondefined constructor
 	TestConstructor obj2(2);
-	cout << "obj1 getValue: " << obj2.getValue() << endl;
+	std::cout << "obj1 getValue: " << obj2.getValue() << std::endl;
 }
 
 
@@ -120,10 +118,10 @@ void setAVar(BaseClass & obj)
 {
 	obj.a = 10;
 }
+
 void TestFriendFunction()
 {
-	using namespace std;
-	cout << "\nTestFriendFunction" << endl;
+	std::cout << "\nTestFriendFunction" << std::endl;
 	BaseClass obj1;
 	setAVar(obj1);
 	obj1.printAVar();

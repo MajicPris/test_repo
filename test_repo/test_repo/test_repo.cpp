@@ -9,6 +9,8 @@
 #include "work_with_class.h"
 #include "work_with_templates.h"
 #include "FirstNRepeatingStream_v3.h"
+#include "test_r_values.h"
+#include "test_copy_constructor.h"
 
 
 inline int maX(int a, int b)
@@ -64,6 +66,10 @@ int main()
 	testCharacterInputStream("abbcacfg",1);
 	testCharacterInputStream("bcfbfcbccfccbb", 2);
 	testCharacterInputStream("aaaacbcabac", 2);
+
+	testRValues();
+
+	testCopyConstr();
 
 	return 0;
 }

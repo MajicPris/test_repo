@@ -4,6 +4,13 @@ FirstNRepeatingStream::FirstNRepeatingStream(int N) : repeatCount(N)
 {
 }
 
+FirstNRepeatingStream::~FirstNRepeatingStream()
+{
+    repeatCount = 0;
+    inputStreamMap.clear();
+    correctInputList.clear();
+}
+
 std::optional<char> FirstNRepeatingStream::next(char c)
 {
     if (inputStreamMap.count(c))
@@ -31,7 +38,7 @@ std::optional<char> FirstNRepeatingStream::next(char c)
 
 void testCharacterInputStream(std::string a_inputStream, int a_repeatCount)
 {
-    std::cout << "\ntestCharacterInputStream" << std::endl;
+    std::cout << "\ntestCharacterInputStream with N=" << a_repeatCount << std::endl;
 	FirstNRepeatingStream tmpObj(a_repeatCount);
 
 	for (int i = 0; i < a_inputStream.size(); ++i)

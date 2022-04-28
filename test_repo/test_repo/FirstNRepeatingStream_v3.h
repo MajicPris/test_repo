@@ -45,6 +45,7 @@
 class FirstNRepeatingStream {
 public:
     FirstNRepeatingStream(int N);
+    ~FirstNRepeatingStream();
     std::optional<char> next(char c);
 private:
     int repeatCount;

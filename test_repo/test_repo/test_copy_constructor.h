@@ -72,11 +72,6 @@ public:
 	}
 };
 
-void testCopyConstr();
+testCopyConstructor<my_Item> generateItem1();
 
-template <class T>
-testCopyConstructor<T> generateItem()
-{
-	testCopyConstructor<my_Item> item(new my_Item); //call constructor
-	return item; //call copy constructor (create new temp object) and destructor for item
-}
+void testCopyConstr();

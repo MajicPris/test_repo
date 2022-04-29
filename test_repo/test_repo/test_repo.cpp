@@ -11,7 +11,8 @@
 #include "FirstNRepeatingStream_v3.h"
 #include "test_r_values.h"
 #include "test_copy_constructor.h"
-
+#include "move_constructor.h"
+#include "test_weak_ptr.h"
 
 inline int maX(int a, int b)
 {
@@ -70,6 +71,10 @@ int main()
 	testRValues();
 
 	testCopyConstr();
+
+	testMoveConstructor();
+
+	testSwapFunc();
 
 	return 0;
 }

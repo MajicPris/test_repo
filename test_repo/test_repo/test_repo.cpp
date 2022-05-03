@@ -13,6 +13,8 @@
 #include "test_copy_constructor.h"
 #include "move_constructor.h"
 #include "test_weak_ptr.h"
+#include "Problems\1_two_sum.h"
+#include "Problems\2_add_two_numbers.h"
 
 inline int maX(int a, int b)
 {
@@ -75,6 +77,10 @@ int main()
 	testMoveConstructor();
 
 	testSwapFunc();
+
+	testTwoSum();
+
+	testAddTwoNumbers();
 
 	return 0;
 }

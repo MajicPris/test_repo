@@ -15,6 +15,10 @@
 #include "test_weak_ptr.h"
 #include "Problems\1_two_sum.h"
 #include "Problems\2_add_two_numbers.h"
+#include "Structures\LinkedList.h"
+#include "Structures\Stack.h"
+#include "Structures\Queue.h"
+#include "Structures\BinaryTree.h"
 
 inline int maX(int a, int b)
 {
@@ -81,6 +85,14 @@ int main()
 	testTwoSum();
 
 	testAddTwoNumbers();
+
+	testLinkedListFunc();
+
+	testStack();
+
+	testQueue();
+
+	testBinaryTree();
 
 	return 0;
 }

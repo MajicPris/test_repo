@@ -19,6 +19,8 @@
 #include "Structures\Stack.h"
 #include "Structures\Queue.h"
 #include "Structures\BinaryTree.h"
+#include "Threads\test_threads.h"
+#include "Containers\test_containers_if.h"
 
 inline int maX(int a, int b)
 {
@@ -93,6 +95,8 @@ int main()
 	testQueue();
 
 	testBinaryTree();
+
+	testMap();
 
 	return 0;
 }

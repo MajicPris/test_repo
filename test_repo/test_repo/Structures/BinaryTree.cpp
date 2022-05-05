@@ -50,5 +50,6 @@ void testBinaryTree()
         root = addnode(rand(), root); // add node
     }
     treeprint(root); 
-    freemem(root);      
+    freemem(root);  
+    std::cout << std::endl;
 }

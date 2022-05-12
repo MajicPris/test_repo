@@ -12,7 +12,6 @@
 #include "test_r_values.h"
 #include "test_copy_constructor.h"
 #include "move_constructor.h"
-#include "test_weak_ptr.h"
 #include "Problems\1_two_sum.h"
 #include "Problems\2_add_two_numbers.h"
 #include "Structures\LinkedList.h"
@@ -21,6 +20,7 @@
 #include "Structures\BinaryTree.h"
 #include "Threads\test_threads.h"
 #include "Containers\test_containers_if.h"
+#include "SmartPointers\test_smartPointers_if.h"
 
 inline int maX(int a, int b)
 {
@@ -97,6 +97,16 @@ int main()
 	testBinaryTree();
 
 	testMap();
+
+	testVector();
+
+	testUnique();
+
+	testShared();
+
+	testWeak();
+
+	testThreads();
 
 	return 0;
 }

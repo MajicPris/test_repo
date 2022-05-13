@@ -2,3 +2,5 @@
 using namespace std;
 
 void testThreads();
+
+void testThreadClass();

@@ -106,7 +106,9 @@ int main()
 
 	testWeak();
 
-	testThreads();
+	//testThreads();
+
+	testThreadClass();
 
 	return 0;
 }

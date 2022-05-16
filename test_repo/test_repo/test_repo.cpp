@@ -18,7 +18,7 @@
 #include "Structures\Stack.h"
 #include "Structures\Queue.h"
 #include "Structures\BinaryTree.h"
-#include "Threads\test_threads.h"
+#include "Threads\test_threads_if.h"
 #include "Containers\test_containers_if.h"
 #include "SmartPointers\test_smartPointers_if.h"
 
@@ -108,7 +108,9 @@ int main()
 
 	//testThreads();
 
-	testThreadClass();
+	//testThreadClass();
+
+	testThreadMutex();
 
 	return 0;
 }

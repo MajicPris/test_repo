@@ -21,6 +21,7 @@
 #include "Threads\test_threads_if.h"
 #include "Containers\test_containers_if.h"
 #include "SmartPointers\test_smartPointers_if.h"
+#include "Problems\test_problems_if.h"
 
 inline int maX(int a, int b)
 {
@@ -110,7 +111,13 @@ int main()
 
 	//testThreadClass();
 
-	testThreadMutex();
+	//testThreadMutex();
+
+	testMax1Sequence_if();
+
+	testStonesAndJewels_if();
+
+	testIsPalindrome_if();
 
 	return 0;
 }

@@ -4,3 +4,5 @@ using namespace std;
 void testMap();
 
 void testVector();
+
+void testList();

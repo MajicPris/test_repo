@@ -40,6 +40,15 @@ void freemem(tnode* tree)
     }
 }
 
+tnode* createNode(int value)
+{
+    tnode* node = new tnode;
+    node->field = value;
+    node->left = nullptr;
+    node->right = nullptr;
+    return node;
+}
+
 void testBinaryTree()
 {
     std::cout << "\n testBinaryTree" << std::endl;

@@ -7,6 +7,7 @@ project ("test_repo")
 
 # Включите подпроекты.
 add_subdirectory ("test_repo")
+include_directories("${CMAKE_SOURCE_DIR}/Problems")
 set_property (TARGET "test_repo"
   PROPERTY
     # Enable C++17 standard compliance

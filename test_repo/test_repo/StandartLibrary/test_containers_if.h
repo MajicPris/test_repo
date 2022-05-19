@@ -6,3 +6,5 @@ void testMap();
 void testVector();
 
 void testList();
+
+void testStdFunction();

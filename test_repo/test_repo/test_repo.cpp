@@ -14,14 +14,16 @@
 #include "move_constructor.h"
 #include "Problems\1_two_sum.h"
 #include "Problems\2_add_two_numbers.h"
+#include "Problems\test_problems_if.h"
+#include "Problems\Trees\trees_problems_if.h"
 #include "Structures\LinkedList.h"
 #include "Structures\Stack.h"
 #include "Structures\Queue.h"
 #include "Structures\BinaryTree.h"
 #include "Threads\test_threads_if.h"
-#include "Containers\test_containers_if.h"
+#include "StandartLibrary\test_containers_if.h"
 #include "SmartPointers\test_smartPointers_if.h"
-#include "Problems\test_problems_if.h"
+
 
 inline int maX(int a, int b)
 {
@@ -37,7 +39,6 @@ namespace Doo
 	}
 
 }  // namespace Doo
-
 
 namespace Boo
 {
@@ -118,6 +119,14 @@ int main()
 	testStonesAndJewels_if();
 
 	testIsPalindrome_if();
+
+	testCallSpecificFunction();
+
+	testStdFunction();
+
+	testSearchInsertPosition();
+
+	testRecoverBinaryTree();
 
 	return 0;
 }

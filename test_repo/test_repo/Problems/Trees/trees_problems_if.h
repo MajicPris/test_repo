@@ -2,6 +2,11 @@
 #include <algorithm>
 using namespace std;
 
+#ifndef  TREES_PROBLEMS_IF
+#define  TREES_PROBLEMS_IF
+
+
+
 struct TreeNode {
 	int val;
 	TreeNode* left;
@@ -14,3 +19,4 @@ struct TreeNode {
 void testRecoverBinaryTree();
 
 
+#endif // ! TREES_PROBLEMS_IF

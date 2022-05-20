@@ -16,6 +16,7 @@
 #include "Problems\2_add_two_numbers.h"
 #include "Problems\test_problems_if.h"
 #include "Problems\Trees\trees_problems_if.h"
+#include "Problems\Strings\strings_problems._if.h"
 #include "Structures\LinkedList.h"
 #include "Structures\Stack.h"
 #include "Structures\Queue.h"

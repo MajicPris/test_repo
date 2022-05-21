@@ -129,5 +129,9 @@ int main()
 
 	testRecoverBinaryTree();
 
+	testRomanToInteger();
+
+	testLengthOfLongestSubstring();
+
 	return 0;
 }

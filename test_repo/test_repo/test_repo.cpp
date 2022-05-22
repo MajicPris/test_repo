@@ -17,6 +17,7 @@
 #include "Problems\test_problems_if.h"
 #include "Problems\Trees\trees_problems_if.h"
 #include "Problems\Strings\strings_problems._if.h"
+#include "Problems\TwoPointers\two_pointer_if.h"
 #include "Structures\LinkedList.h"
 #include "Structures\Stack.h"
 #include "Structures\Queue.h"
@@ -132,6 +133,14 @@ int main()
 	testRomanToInteger();
 
 	testLengthOfLongestSubstring();
+
+	testLetterCombinations();
+
+	testRemoveDuplicates();
+
+	testRemoveDuplicates2();
+
+	testCountSubstrings();
 
 	return 0;
 }

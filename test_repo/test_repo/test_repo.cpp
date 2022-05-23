@@ -12,12 +12,13 @@
 #include "test_r_values.h"
 #include "test_copy_constructor.h"
 #include "move_constructor.h"
-#include "Problems\1_two_sum.h"
 #include "Problems\2_add_two_numbers.h"
 #include "Problems\test_problems_if.h"
 #include "Problems\Trees\trees_problems_if.h"
-#include "Problems\Strings\strings_problems._if.h"
-#include "Problems\TwoPointers\two_pointer_if.h"
+#include "Problems\Strings\strings_problems_if.h"
+#include "Problems\TwoPointers\two_pointer_problems_if.h"
+#include "Problems\BinarySearch\binary_search_problems_if.h"
+#include "Problems\HashTable\hash_table_problems_if.h"
 #include "Structures\LinkedList.h"
 #include "Structures\Stack.h"
 #include "Structures\Queue.h"
@@ -102,8 +103,6 @@ int main()
 
 	testMap();
 
-	testVector();
-
 	testUnique();
 
 	testShared();
@@ -141,6 +140,16 @@ int main()
 	testRemoveDuplicates2();
 
 	testCountSubstrings();
+
+	testTwoSum2();
+
+	testSortArrayByParity();
+
+	testWordBreak();
+
+	testContainsDuplicate();
+
+	testVector();
 
 	return 0;
 }

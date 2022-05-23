@@ -1,4 +1,4 @@
-#include "two_pointer_if.h"
+#include "two_pointer_problems_if.h"
 
 int removeDuplicates(vector<int>& nums) 
 {
@@ -64,4 +64,5 @@ void testRemoveDuplicates()
 	{
 		cout << it << " ";
 	}
+	cout << endl;
 }

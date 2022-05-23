@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 #ifndef  TREES_PROBLEMS_IF
@@ -17,6 +18,8 @@ struct TreeNode {
 };
 
 void testRecoverBinaryTree();
+
+void testMaxDepth();
 
 
 #endif // ! TREES_PROBLEMS_IF

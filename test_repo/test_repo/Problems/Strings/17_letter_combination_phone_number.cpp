@@ -1,4 +1,4 @@
-#include "strings_problems._if.h"
+#include "strings_problems_if.h"
 #include <unordered_set>
 
 vector<string> res;
@@ -43,5 +43,5 @@ void testLetterCombinations()
 	{
 		cout << it << " ";
 	}
-
+	cout << endl;
 }

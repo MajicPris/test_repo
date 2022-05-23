@@ -3,7 +3,7 @@
 
 void testVector()
 {
-	std::cout << "\n testVector" << std::endl;
+	cout << "\n===============testVector===============" << endl;
 
 	vector<int> myVector;
 
@@ -52,4 +52,6 @@ void testVector()
 		cout << myThirdVector[i] << " "; 
 	}
 	cout << endl;
+
+
 }

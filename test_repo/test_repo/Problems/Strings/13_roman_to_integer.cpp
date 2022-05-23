@@ -1,4 +1,4 @@
-#include "strings_problems._if.h"
+#include "strings_problems_if.h"
 
 int checkSymbol(char a_var)
 {

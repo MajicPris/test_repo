@@ -1,7 +1,6 @@
-#include "1_two_sum.h"
-#include<unordered_map>
+#include "hash_table_problems_if.h"
 
-std::vector<int> Solution::twoSum(std::vector<int>& nums, int target)
+vector<int> twoSum(std::vector<int>& nums, int target)
 {
 	std::vector<int> resultV;
 	std::unordered_map<int, int> tmpMap;
@@ -27,10 +26,10 @@ std::vector<int> Solution::twoSum(std::vector<int>& nums, int target)
 
 void testTwoSum()
 {
-	std::cout << "\ntestTwoSum" << std::endl;
-	Solution obj1;
+	cout << "\n===============ntestTwoSum===============" << endl;
+
 	std::vector<int> testV = { 2, 7, 11, 15 };
-	std::vector<int> outputV = obj1.twoSum(testV, 13);
+	std::vector<int> outputV = twoSum(testV, 13);
 	for (auto i = outputV.begin(); i != outputV.end(); ++i)
 	{
 		std::cout << *i << ' ';

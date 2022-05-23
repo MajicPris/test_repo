@@ -1,6 +1,4 @@
-#include "test_problems_if.h"
-#include<vector>
-#include<string>
+#include "strings_problems_if.h"
 #include<assert.h>
 
 /*

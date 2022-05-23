@@ -1,6 +1,5 @@
-#include "test_problems_if.h"
-#include<vector>
-#include<algorithm>
+#include "binary_search_problems_if.h"
+
 
 int searchInsert(vector<int>& a_vec, int a_target)
 {
@@ -44,4 +43,5 @@ void testSearchInsertPosition()
 	cout << "position=" << searchInsert(v1, 7) <<endl;
 	cout << "position=" << searchInsert(v1, 5) << endl;
 	printVec(v1);
+	cout << endl;
 }

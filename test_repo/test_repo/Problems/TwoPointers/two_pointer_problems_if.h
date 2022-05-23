@@ -8,3 +8,7 @@ void testRemoveDuplicates();
 void testRemoveDuplicates2();
 
 void testCountSubstrings();
+
+void testTwoSum2();
+
+void testSortArrayByParity();

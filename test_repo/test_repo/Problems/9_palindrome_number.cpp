@@ -26,6 +26,44 @@ void testIsPalindrome(int a_var)
 	cout << "is palindrome = " << isPalindrome << endl;
 }
 
+/*----------------------------------------------------------------*/
+string isPalindrome(string S)
+{
+	// Iterate over the range [0, N/2]
+	for (int i = 0; i < S.length() / 2; i++) {
+
+		// If S[i] is not equal to
+		// the S[N-i-1]
+		if (S[i] != S[S.length() - i - 1]) {
+			// Return No
+			return "No";
+		}
+	}
+	// Return "Yes"
+	return "Yes";
+}
+
+/*----------------------------------------------------------------*/
+bool IsPalindrome(const string& str)
+{
+	if (str.empty())
+		return false;
+
+	int i = 0;                // first characters
+	int j = str.length() - 1; // last character
+
+	while (i < j)
+	{
+		if (str[i] != str[j])
+		{
+			return false;
+		}
+		i++;
+		j--;
+	}
+	return true;
+}
+
 void testIsPalindrome_if()
 {
 	cout << "\n===============testIsPalindrome_if===============" << endl;

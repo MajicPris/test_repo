@@ -1,6 +1,15 @@
 #include "test_containers_if.h"
 #include <vector>
 
+void print(vector<int>& nums)
+{
+	for (const auto& it : nums)
+	{
+		cout << it << " ";
+	}
+	cout << endl;
+}
+
 void testVector()
 {
 	cout << "\n===============testVector===============" << endl;
@@ -13,11 +22,7 @@ void testVector()
 
 	cout << "vector size = " << myVector.size() << endl;
 
-	for (int i = 0; i < myVector.size(); ++i)
-	{
-		cout << myVector[i] << " ";
-	}
-	cout << endl;
+	print(myVector);
 
 	try
 	{
@@ -47,11 +52,18 @@ void testVector()
 
 
 	vector<int> myThirdVector(5, 13); //created new vector with size 5 and all values are 13
-	for (int i = 0; i < myThirdVector.size(); ++i)
-	{
-		cout << myThirdVector[i] << " "; 
-	}
-	cout << endl;
+	print(myThirdVector);
 
+
+	myThirdVector.insert(myThirdVector.begin(), 55);
+	print(myThirdVector);
+
+
+	myThirdVector.insert(myThirdVector.begin()+2, 3, 44);//insert 44 44 44 from index 2
+	print(myThirdVector);
+
+	myThirdVector.erase(myThirdVector.begin()); //remove first element
+	myThirdVector.erase(myThirdVector.begin()+2, myThirdVector.begin() + 5); //remove elements from 2 to 5
+	print(myThirdVector);
 
 }

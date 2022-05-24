@@ -19,6 +19,7 @@
 #include "Problems\TwoPointers\two_pointer_problems_if.h"
 #include "Problems\BinarySearch\binary_search_problems_if.h"
 #include "Problems\HashTable\hash_table_problems_if.h"
+#include "Problems\Array\array_problems_if.h"
 #include "Structures\LinkedList.h"
 #include "Structures\Stack.h"
 #include "Structures\Queue.h"
@@ -150,6 +151,12 @@ int main()
 	testContainsDuplicate();
 
 	testVector();
+
+	testRemoveZeroesFromArray();
+
+	testMaxDistanceBetweenTwo1();
+
+	testRemoveElement();
 
 	return 0;
 }

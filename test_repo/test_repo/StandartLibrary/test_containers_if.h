@@ -8,3 +8,7 @@ void testVector();
 void testList();
 
 void testStdFunction();
+
+void testForEach();
+
+void testSet();

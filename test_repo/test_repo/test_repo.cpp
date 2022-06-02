@@ -158,5 +158,9 @@ int main()
 
 	testRemoveElement();
 
+	testForEach();
+
+	testSet();
+
 	return 0;
 }

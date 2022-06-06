@@ -25,7 +25,7 @@
 #include "Structures\Queue.h"
 #include "Structures\BinaryTree.h"
 #include "Threads\test_threads_if.h"
-#include "StandartLibrary\test_containers_if.h"
+#include "StandardLibrary\test_containers_if.h"
 #include "SmartPointers\test_smartPointers_if.h"
 
 
@@ -161,6 +161,14 @@ int main()
 	testForEach();
 
 	testSet();
+
+	testOptinal();
+	
+	testException();
+
+	testThrow();
+
+	testCustomException();
 
 	return 0;
 }

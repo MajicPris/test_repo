@@ -12,3 +12,11 @@ void testStdFunction();
 void testForEach();
 
 void testSet();
+
+void testOptinal();
+
+void testException();
+
+void testThrow();
+
+void testCustomException();

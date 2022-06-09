@@ -23,4 +23,6 @@ void testShared()
 	}
 	std::cout << "Killing another shared pointer\n";
 	//ptr1 will try to destroy item (there will be an error if ptr2 always destroyed item)
+
+	shared_ptr<int> p4 = make_shared<int>();
 }

@@ -1,3 +1,6 @@
+#ifndef NETWORK_HEADERS
+#define NETWORK_HEADERS
+
 #include <iostream>
 #include <optional>
 #include <fstream>
@@ -8,8 +11,8 @@ using namespace std;
 struct ethernet_hdr_t 
 {
 private:
-    static const uint8_t SOURCE_HOST_HEADER_OFSET = 6;
-    static const uint8_t PROTOCOL_TYPE_HEADER_OFSET = 12;
+    static const uint8_t SOURCE_HOST_HEADER_OFFSET = 6;
+    static const uint8_t PROTOCOL_TYPE_HEADER_OFFSET = 12;
 
 public:
     uint8_t dst[6] = {};    /* destination host address */
@@ -24,15 +27,15 @@ public:
 struct ip_hdr_t
 {
 private:
-    static const std::uint8_t DSCP_ECN_HEADER_OFSET = 1;
-    static const std::uint8_t PACKET_SIZE_HEADER_OFSET = 2;
-    static const std::uint8_t ID_HEADER_OFSET = 4;
-    static const std::uint8_t FLAGS_FRAGMENT_HEADER_OFSET = 6;
-    static const std::uint8_t LIFETIME_HEADER_OFSET = 8;
-    static const std::uint8_t PROTOCOL_TYPE_HEADER_OFSET = 9;
-    static const std::uint8_t CHECKSUM_HEADER_OFSET = 10;
-    static const std::uint8_t SOURCE_IP_HEADER_OFSET = 12;
-    static const std::uint8_t DESTINATION_IP_HEADER_OFSET = 16;
+    static const std::uint8_t DSCP_ECN_HEADER_OFFSET = 1;
+    static const std::uint8_t PACKET_SIZE_HEADER_OFFSET = 2;
+    static const std::uint8_t ID_HEADER_OFFSET = 4;
+    static const std::uint8_t FLAGS_FRAGMENT_HEADER_OFFSET = 6;
+    static const std::uint8_t LIFETIME_HEADER_OFFSET = 8;
+    static const std::uint8_t PROTOCOL_TYPE_HEADER_OFFSET = 9;
+    static const std::uint8_t CHECKSUM_HEADER_OFFSET = 10;
+    static const std::uint8_t SOURCE_IP_HEADER_OFFSET = 12;
+    static const std::uint8_t DESTINATION_IP_HEADER_OFFSET = 16;
 
 public:
     uint8_t  ip_hl    = 0;
@@ -117,32 +120,36 @@ vector<string> split(const string& str, const string& delim);
 class HttpHeader
 {
 private:
-    string key;
-    string value;
+    string m_key;
+    string m_value;
 
 public:
-    HttpHeader(const string& key, const string& value);
+    HttpHeader();
+
+    HttpHeader(string a_pArray);
+
+    void InitHeader(const string& header);
 
     const string& get_key() const;
 
     const string& get_value() const;
-
-    static HttpHeader deserialize(const string& header);
 };
 
 
 class HttpRequest
 {
 private:
-    Version version;
-    Method method;
-    string resource;
-    vector<HttpHeader> headers;
+    Version m_version;
+    Method m_method;
+    string m_resource;
+    vector<HttpHeader> m_vHeaders;
 
 public:
     HttpRequest();
 
-    HttpRequest(Method method, const string& resource, const vector<HttpHeader>& headers, Version version = Version::HTTP_1_1);
+    HttpRequest(char* a_pArray);
 
-    static HttpRequest deserialize(const string& request);
+    void InitRequest(const string& request);
 };
+
+#endif

@@ -9,8 +9,8 @@
 #include <sstream>
 #include <string>
 #include "PcapHandler.h"
+#include "NetworkHeaders.h"
 using namespace std;
-
 
 
 /*static const std::uint32_t BUFFER_SIZE = 0x80000;
@@ -135,304 +135,9 @@ void ParseHttp(const char* raw)
 }*/
 
 /*-----------------------------------------------------------*/
-static string LINE_END = "\r\n";
-
-enum class Method
-{
-    GET,
-    HEAD,
-    POST,
-    PUT,
-    DELETE,
-    TRACE,
-    OPTIONS,
-    CONNECT,
-    PATCH
-};
-
-string to_string(Method method)
-{
-    switch (method)
-    {
-    case Method::GET:
-        return "GET";
-    case Method::HEAD:
-        return "HEAD";
-    case Method::POST:
-        return "POST";
-    case Method::PUT:
-        return "PUT";
-    case Method::DELETE:
-        return "DELETE";
-    case Method::TRACE:
-        return "TRACE";
-    case Method::OPTIONS:
-        return "OPTIONS";
-    case Method::CONNECT:
-        return "CONNECT";
-    case Method::PATCH:
-        return "PATCH";
-    }
-}
-
-Method method_from_string(const string& method)
-{
-    if (method == to_string(Method::GET))
-    {
-        return Method::GET;
-    }
-    else if (method == to_string(Method::HEAD))
-    {
-        return Method::HEAD;
-    }
-    else if (method == to_string(Method::POST))
-    {
-        return Method::POST;
-    }
-    else if (method == to_string(Method::PUT))
-    {
-        return Method::PUT;
-    }
-    else if (method == to_string(Method::DELETE))
-    {
-        return Method::DELETE;
-    }
-    else if (method == to_string(Method::TRACE))
-    {
-        return Method::TRACE;
-    }
-    else if (method == to_string(Method::OPTIONS))
-    {
-        return Method::OPTIONS;
-    }
-    else if (method == to_string(Method::CONNECT))
-    {
-        return Method::CONNECT;
-    }
-    else if (method == to_string(Method::PATCH))
-    {
-        return Method::PATCH;
-    }
-}
-
-enum class Version
-{
-    HTTP_1_0,
-    HTTP_1_1,
-    HTTP_2_0
-};
-
-string to_string(Version version)
-{
-    switch (version)
-    {
-    case Version::HTTP_1_0:
-        return "HTTP/1.0";
-
-    case Version::HTTP_1_1:
-        return "HTTP/1.1";
-
-    case Version::HTTP_2_0:
-        return "HTTP/2.0";
-    }
-}
-
-Version version_from_string(string& version)
-{
-    if (version == to_string(Version::HTTP_1_0))
-    {
-        return Version::HTTP_1_0;
-    }
-    else if (version == to_string(Version::HTTP_1_1))
-    {
-        return Version::HTTP_1_1;
-    }
-    else if (version == to_string(Version::HTTP_2_0))
-    {
-        return Version::HTTP_2_0;
-    }
-}
-
-vector<string> split(const string& str, const string& delim)
-{
-    vector<string> tokens = vector<string>();
-    /*string strCopy = str;
-
-    size_t pos = 0;
-    string token;
-
-    while ((pos = strCopy.find(delim)) != string::npos)
-    {
-        token = strCopy.substr(0, pos);
-        strCopy.erase(0, pos + delim.length());
-
-        tokens.push_back(token);
-    }
-
-    if (strCopy.length() > 0)
-    {
-        tokens.push_back(strCopy);
-    }*/
-
-
-    size_t last = 0; 
-    size_t next = 0; 
-    while ((next = str.find(delim, last)) != string::npos)
-    { 
-        tokens.push_back(str.substr(last, next - last));
-        //cout << str.substr(last, next - last) << endl;
-        last = next + 1; 
-    } 
-    tokens.push_back(str.substr(last));
-    //cout << str.substr(last) << endl;
-    return tokens;
-}
-
-/*std::string concat(const std::vector<std::string>& strings, const std::string& delim = "")
-{
-    std::string result;
-
-    for (std::size_t i = 0; i < strings.size(); i++)
-    {
-        result += strings[i];
-
-        if ((i + 1) != strings.size())
-        {
-            result += delim;
-        }
-    }
-
-    return result;
-}*/
-
-class Header
-{
-private:
-    string key;
-    string value;
-
-public:
-    Header(const string& key, const string& value) 
-        : key(key), value(value)
-    {
-    }
-
-    const string& get_key() const
-    {
-        return this->key;
-    }
-
-    const string& get_value() const
-    {
-        return this->value;
-    }
-
-    /*std::string serialize() const
-    {
-        std::string header;
-        header += this->key;
-        header += ": ";
-        header += this->value;
-        header += LINE_END;
-
-        return header;
-    }*/
-
-    static Header deserialize(const string& header)
-    {
-        size_t  pos = header.find(':');
-        if (pos == string::npos) 
-        {
-            //throw appropriate_exception;
-        }
-        string key(header.substr(0, pos));
-
-        size_t first = header.find_first_not_of(" \t", pos + 1);
-        size_t last = header.find_last_not_of(" \t");
-        string value(header.substr(first, last - first + 1));
-
-        return Header(key, value);
-    }
-};
-
-
-class Request
-{
-private:
-    Version version;
-    Method method;
-    string resource;
-    vector<Header> headers;
-
-public:
-    Request(Method method, const string& resource, const vector<Header>& headers, Version version = Version::HTTP_1_1)
-        : version(version), method(method), resource(resource), headers(headers)
-    {
-    }
-
-    /*std::string serialize() const
-    {
-        std::string request;
-        request += to_string(this->method);
-        request += " ";
-        request += this->resource;
-        request += " ";
-        request += to_string(this->version);
-        request += LINE_END;
-
-        for (const Header& header : this->headers)
-        {
-            request += header.serialize();
-        }
-
-        request += LINE_END;
-        return request;
-    }*/
-
-    static Request deserialize(const string& request)
-    {
-        vector<string> lines = split(request, string(LINE_END));
-
-        if (lines.size() < 1)
-        {
-            throw std::runtime_error("HTTP Request ('" + string(request) + "') consisted of " + /*std::to_string(lines.size()) + */" lines, should be >= 1.");
-        }
-
-        vector<string> segments = split(lines[0], " ");
-
-        if (segments.size() != 3)
-        {
-            throw std::runtime_error("First line of HTTP request ('" + string(request) + "') consisted of " + /*std::to_string(segments.size()) + */" space separated segments, should be 3.");
-        }
-
-        const Method method = method_from_string(segments[0]);
-        const string resource = segments[1];
-        const Version version = version_from_string(segments[2]);
-
-        vector<Header> headers;
-
-        for (size_t i = 1; i < lines.size()-1; i++)
-        {
-            if (lines[i].size() > 0)
-            {
-                const Header header = Header::deserialize(lines[i]);
-                headers.push_back(header);
-            }
-        }
-
-        cout << "Method = " << to_string(method) << endl;
-        cout << "version = " << to_string(version) << endl;
-        cout << "resource = " << resource << endl;
-        for (const auto& it : headers)
-            cout << it.get_key() << " " << it.get_value() << endl;
-
-        return Request(method, resource, headers, version);
-    }
-};
-
 void Parse(char* raw)
 {
-    Request request = Request::deserialize(string(raw));
+    HttpRequest request = HttpRequest::deserialize(string(raw));
 
 }
 
@@ -469,9 +174,6 @@ int main()
     char* buffer = std::allocator<char>().allocate(handler.getHeader().snaplen);
 
     struct pcaprec_hdr_s pheader;
-    struct ethernet_hdr_s eth;
-    struct ip_hdr_s ip;
-    struct tcp_header_s tcp;
 
 	//cout << "Hello CMake." << endl;
     /*cout << "magic = " << gheader.magic_number << endl;
@@ -481,58 +183,73 @@ int main()
     int count = 0, bytes_read;
 
     //fread(&pheader, sizeof(char), sizeof(struct pcaprec_hdr_s), ptrFile);
-    handler.getFile().read((char*)&pheader, sizeof(pcaprec_hdr_s));
-
+    uint32_t data_length;
     while (count<4)
     {
         count++;
+        //char packet_header_binary[16];
+        //handler.getFile().read(packet_header_binary, sizeof packet_header_binary);
+        handler.getFile().read((char*)&pheader, sizeof(pcaprec_hdr_s));
         cout << "Packet number: " << count << endl;
-        cout << "Packet len: " << pheader.orig_len << endl;
+
+        memcpy(&data_length, &pheader.orig_len, sizeof(data_length));
+        auto data = std::make_unique<char[]>(data_length);
+        handler.getFile().read(data.get(), data_length); //read header
+
+        cout << "Packet len: " << dec << data_length << endl;
+        
+        ethernet_hdr_t eth(data.get());
         //bytes_read = fread(&eth, sizeof(char), sizeof(struct ethernet_hdr_s), ptrFile);
-        handler.getFile().read((char*)&eth, sizeof(struct ethernet_hdr_s));
-        bytes_read = sizeof(struct ethernet_hdr_s);
-        cout << "eth.dst = " << std::hex <<eth.dst << endl;
-        cout << "eth.src = " << std::hex <<eth.src << endl;
+        //handler.getFile().read((char*)&eth, sizeof(ethernet_hdr_t));
+        //bytes_read = sizeof(ethernet_hdr_t);
+        cout << "eth.dst = " << hex << eth.dst << endl;
+        cout << "eth.src = " << hex << eth.src << endl;
         cout << "eth.type = " << eth.type << endl;
 
         // ip
         if (eth.type == 0x08)
         {
+            ip_hdr_t ip(data.get()+14);
             //bytes_read += fread(&ip, sizeof(char), sizeof(struct ip_hdr_s), ptrFile);
-            handler.getFile().read((char*)&ip, sizeof(struct ip_hdr_s));
-            bytes_read += sizeof(struct ip_hdr_s);
-            cout << "ip.ip_ttl = " << ip.ip_ttl << endl;
-            cout << "ip.ip_dst = " << ip.ip_dst << endl;
-            cout << "ip.ip_src = " << ip.ip_src << endl;
+            //handler.getFile().read((char*)&ip, sizeof(ip_hdr_t));
+            //bytes_read += sizeof(ip_hdr_t);
+            cout << "ip.ip_len = " << ip.ip_len << endl;            
+            cout << "ip.ip_p = " << dec << ip.ip_p << endl;
+            cout << "ip.ip_src = " << hex << ip.ip_src << endl;
+            cout << "ip.ip_dst = " << hex << ip.ip_dst << endl;
 
             //tcp
             if (ip.ip_p == 0x06)
             {
+                tcp_header_t tcp(data.get() + 14 + ip.ip_hl);
                 //bytes_read += fread(&tcp, sizeof(char), sizeof(struct tcp_header_s), ptrFile);
-                handler.getFile().read((char*)&tcp, sizeof(struct tcp_header_s));
-                bytes_read += sizeof(struct tcp_header_s);
+                //handler.getFile().read((char*)&tcp, sizeof(tcp_header_t));
+                //bytes_read += sizeof(tcp_header_t);
                 cout << "tcp.src_port = " << tcp.src_port << endl;
                 cout << "tcp.dst_port = " << tcp.dst_port << endl;
                 cout << "tcp.window_size = " << tcp.window_size << endl;
+                cout << "tcp.checksum = " << tcp.checksum << endl;
 
-                cout << "bytes_read = " << bytes_read << endl;
+                //cout << "bytes_read = " << bytes_read << endl;
+                //if (count == 4)
+                //{
+                    //ParseHttp(buffer);
+                HttpRequest request = HttpRequest::deserialize(string(data.get() + 14 + ip.ip_hl + 20));
+                    //Parse(data.get() + 14 + ip.ip_hl + 20);
+                //}
             }
         }
 
         //read rest of the packet
         //fread(buffer, sizeof(char), pheader.incl_len - bytes_read, ptrFile);
-        handler.getFile().read(buffer, pheader.incl_len - bytes_read);
-        if (count == 4)
-        {
-            //ParseHttp(buffer);
-            Parse(buffer);
-        }
+        //handler.getFile().read(buffer, pheader.incl_len - bytes_read);
+
         //cout << "rest buffer = " << buffer << endl;
 
         // read next packet's header
         //fread(&pheader, sizeof(char), sizeof(struct pcaprec_hdr_s), ptrFile);
-        handler.getFile().read((char*)&pheader, sizeof(pcaprec_hdr_s));
-        cout << endl;
+        //handler.getFile().read((char*)&pheader, sizeof(pcaprec_hdr_s));
+        //cout << endl;
     }
 
     cout << "Total packets: " << count << endl;

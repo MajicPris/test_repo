@@ -254,14 +254,14 @@ void HttpRequest::InitRequest(const string& a_rRequest)
 
     if (lines.size() < 1)
     {
-        throw runtime_error("HTTP Request ('" + string(a_rRequest) + "') lines should be >= 1.");
+        throw runtime_error("HTTP Request should be >= 1 lines");
     }
 
     vector<string> segments = split(lines[0], " ");
 
     if (segments.size() != 3)
     {
-        throw runtime_error("First line of HTTP request ('" + string(a_rRequest) + "') space separated segments should be 3.");
+        throw runtime_error("First line of HTTP request should be 3 space separated segments");
     }
 
     m_method = methodFromString(segments[0]);

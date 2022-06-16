@@ -29,20 +29,22 @@ int main(int argc, const char** argv)
     PcapHandler handler(argv[1]);
     vector<Packet> vPackets;
 
-    //int count = 0;
-    //while (count<4)
-    while (!handler.isEof())
+    if (handler)
     {
-        auto packet = handler.handlePacket();
-        if (packet)
+        //int count = 0;
+        //while (count<4)
+        while (!handler.isEof())
         {
-            HttpRequest tmp = packet.value().getHttpRequest();
-            tmp.downloadPage(argv[2]);
-            //count++;
-            vPackets.push_back(packet.value());
-         }
-     }
-     showPacketsData(vPackets);
-
+            auto packet = handler.handlePacket();
+            if (packet)
+            {
+                HttpRequest tmp = packet.value().getHttpRequest();
+                tmp.downloadPage(argv[2]);
+                //count++;
+                vPackets.push_back(packet.value());
+            }
+        }
+        showPacketsData(vPackets);
+    }
 	return 0;
 }

@@ -55,12 +55,16 @@ public:
     /* Get reference to the Pcap header */
     const pcap_hdr_t& getHeader() const;
 
+    /* Operator to process current handler state */
+    operator bool() const { return m_isHandlerCorrect; }
+
     ~PcapHandler();
 
 private:
     pcap_hdr_t m_globalHeader;
     ifstream m_file;
     uint32_t m_packetsCount;
+    bool m_isHandlerCorrect;
 };
 
 #endif

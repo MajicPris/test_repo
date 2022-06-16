@@ -16,7 +16,7 @@ pcaprec_hdr_t::pcaprec_hdr_t(char* a_pArray)
 }
 
 PcapHandler::PcapHandler(const string& a_rFilePath)
-    :m_packetsCount(0)
+    :m_packetsCount(0), m_isHandlerCorrect(true)
 {
 	m_file.exceptions(ifstream::badbit | ifstream::failbit);
 	try
@@ -26,9 +26,14 @@ PcapHandler::PcapHandler(const string& a_rFilePath)
 		{
 			m_file.read(reinterpret_cast<char*>(& m_globalHeader), sizeof(pcap_hdr_t));
 		}
+		else
+		{
+			m_isHandlerCorrect = false;
+		}
 	}
 	catch (const ifstream::failure& ex)
 	{
+		m_isHandlerCorrect = false;
 		cout << "Failed to open file" << endl;
 		cout << ex.what() << endl;
 	}
@@ -38,22 +43,30 @@ optional<Packet> PcapHandler::handlePacket()
 {
 	try
 	{
-		uint32_t data_length;
-		pcaprec_hdr_t pheader;
-		m_file.read(reinterpret_cast<char*>(&pheader), sizeof(pcaprec_hdr_t)); //read header
-		if (!m_file.eof())
+		if (m_isHandlerCorrect)
 		{
-			m_packetsCount++;
-			cout << "Packet number: " << m_packetsCount << endl;
-			memcpy(&data_length, &pheader.orig_len, sizeof(data_length));
-			auto data = make_unique<char[]>(data_length);
-			m_file.read(data.get(), data_length);
-			return Packet(data.get());
+			uint32_t data_length;
+			pcaprec_hdr_t pheader;
+			m_file.read(reinterpret_cast<char*>(&pheader), sizeof(pcaprec_hdr_t)); //read header
+			if (!m_file.eof())
+			{
+				m_packetsCount++;
+				cout << "Packet number: " << m_packetsCount << endl;
+				memcpy(&data_length, &pheader.orig_len, sizeof(data_length));
+				auto data = make_unique<char[]>(data_length);
+				m_file.read(data.get(), data_length);
+				return Packet(data.get());
+			}
+			else
+			{
+				return nullopt;
+			}
 		}
 		else
 		{
 			return nullopt;
 		}
+		
 	}
 	catch (const std::exception& e)
 	{

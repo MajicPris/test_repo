@@ -10,8 +10,8 @@
 #include "work_with_templates.h"
 #include "FirstNRepeatingStream_v3.h"
 #include "test_r_values.h"
-#include "test_copy_constructor.h"
-#include "move_constructor.h"
+#include "Constructors\test_copy_constructor.h"
+#include "Constructors\move_constructor.h"
 #include "Problems\2_add_two_numbers.h"
 #include "Problems\test_problems_if.h"
 #include "Problems\Trees\trees_problems_if.h"
@@ -169,6 +169,8 @@ int main()
 	testThrow();
 
 	testCustomException();
+
+	testBracketSequence();
 
 	return 0;
 }

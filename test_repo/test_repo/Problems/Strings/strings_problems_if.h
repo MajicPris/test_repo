@@ -8,3 +8,5 @@ void testRomanToInteger();
 void testLengthOfLongestSubstring();
 
 void testLetterCombinations();
+
+void testBracketSequence();
